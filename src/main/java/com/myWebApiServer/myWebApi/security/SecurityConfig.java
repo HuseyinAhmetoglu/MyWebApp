@@ -39,10 +39,12 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(x ->
-                        x.requestMatchers("/api/auth/login").permitAll()
-                                .requestMatchers("/api/auth/generateToken").permitAll()
-                                .requestMatchers("/api/**").authenticated()
+                        x.anyRequest().permitAll()
                 )
+//                .authorizeHttpRequests(x ->
+//                        x.requestMatchers("/api/auth/welcome", "/api/auth/login").permitAll()
+//                                .requestMatchers("/api/**").authenticated()
+//                )
 //                .authorizeHttpRequests(x ->
 //                        x.requestMatchers("/auth/user").authenticated()
 //                                .requestMatchers("/auth/manager").hasRole("MANAGER")

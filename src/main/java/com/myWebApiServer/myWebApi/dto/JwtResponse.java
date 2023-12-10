@@ -6,6 +6,10 @@ public class JwtResponse {
     public JwtResponse() {
     }
 
+    public JwtResponse(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
     public String getAccessToken() {
         return accessToken;
     }
