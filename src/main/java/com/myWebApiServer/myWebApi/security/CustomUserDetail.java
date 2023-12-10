@@ -16,7 +16,7 @@ public class CustomUserDetail implements UserDetails {
     Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetail(User user) {
-        this.username = user.getTcIdNumber();
+        this.username = user.getUsername();
         this.password = user.getPassword();
         Set<GrantedAuthority> auths = new HashSet<>();
 

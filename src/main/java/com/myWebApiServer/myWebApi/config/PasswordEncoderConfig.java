@@ -1,4 +1,4 @@
-package com.myWebApiServer.myWebApi.Config;
+package com.myWebApiServer.myWebApi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

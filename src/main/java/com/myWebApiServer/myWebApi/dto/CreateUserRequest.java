@@ -7,7 +7,7 @@ import java.util.Set;
 public class CreateUserRequest {
     private String name;
     private String surname;
-    private String tcIdNumber;
+    private String username;
     private String password;
     private Set<Role> authorities;
 
@@ -30,12 +30,12 @@ public class CreateUserRequest {
         this.surname = surname;
     }
 
-    public String getTcIdNumber() {
-        return tcIdNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTcIdNumber(String tcIdNumber) {
-        this.tcIdNumber = tcIdNumber;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

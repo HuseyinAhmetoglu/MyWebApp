@@ -14,7 +14,7 @@ public class User {
     private Long id;
     private String name;
     private String surname;
-    private String tcIdNumber;
+    private String username;
     @JsonIgnore
     private String password;
 
@@ -51,12 +51,12 @@ public class User {
         this.surname = surname;
     }
 
-    public String getTcIdNumber() {
-        return tcIdNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTcIdNumber(String tcIdNumber) {
-        this.tcIdNumber = tcIdNumber;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
