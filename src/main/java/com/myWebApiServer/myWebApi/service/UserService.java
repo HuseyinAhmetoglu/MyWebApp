@@ -3,6 +3,8 @@ package com.myWebApiServer.myWebApi.service;
 import com.myWebApiServer.myWebApi.dto.CreateUserRequest;
 import com.myWebApiServer.myWebApi.model.User;
 import com.myWebApiServer.myWebApi.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +13,11 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<User> getByUsername(String tcIdNumber) {
@@ -33,7 +37,7 @@ public class UserService {
         createdUser.setName(createUserRequest.getName());
         createdUser.setSurname(createUserRequest.getSurname());
         createdUser.setTcIdNumber(createUserRequest.getTcIdNumber());
-        createdUser.setPassword(createUserRequest.getPassword());
+        createdUser.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
         createdUser.setAuthorities(createUserRequest.getAuthorities());
         userRepository.save(createdUser);
     }

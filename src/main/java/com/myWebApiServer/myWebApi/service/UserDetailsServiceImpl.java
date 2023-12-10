@@ -1,6 +1,7 @@
 package com.myWebApiServer.myWebApi.service;
 
 import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.security.CustomUserDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("could not found user..!!");
         }
         logger.info("User Authenticated Successfully..!!!");
-        return new CustomUserDetails(user);
+        return new CustomUserDetail(user);
     }
 }
