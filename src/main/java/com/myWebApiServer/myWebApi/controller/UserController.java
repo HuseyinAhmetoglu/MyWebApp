@@ -5,6 +5,7 @@ import com.myWebApiServer.myWebApi.model.User;
 import com.myWebApiServer.myWebApi.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,15 +20,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    //    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/{userId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity getUserById(@PathVariable("userId") Long userId) {
         Optional<User> user = userService.getUserById(userId);
         return ResponseEntity.ok(user.orElseThrow(() -> new EntityNotFoundException("Kullanıcı bulunamadı!")));
     }
 
-    //    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @GetMapping("/all")
+    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     public ResponseEntity getAllUser() {
         List<User> users = userService.getAllUsers();
         if (users.isEmpty())
@@ -35,8 +36,8 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    //    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
         return ResponseEntity.ok(userService.createUser(createUserRequest));
     }
