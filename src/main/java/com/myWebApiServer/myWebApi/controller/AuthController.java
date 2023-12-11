@@ -8,12 +8,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RestController("/api/auth")
+@RestController
+@RequestMapping("/auth")
 public class AuthController {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -23,9 +22,17 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
+    @GetMapping("/welcome")
+    public String apiWelcome() {
+        return "Welcome to API!";
+    }
+
     @PostMapping("/login")
     public JwtResponse AuthenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authRequest.getUsername(),
+                        authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
             return new JwtResponse(jwtService.GenerateToken(authRequest.getUsername()));
         } else {

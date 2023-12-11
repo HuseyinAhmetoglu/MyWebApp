@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -19,14 +19,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    //@PreAuthorize("hasAuthority('USER')")
+    //    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/{userId}")
     public ResponseEntity getUserById(@PathVariable("userId") Long userId) {
         Optional<User> user = userService.getUserById(userId);
         return ResponseEntity.ok(user.orElseThrow(() -> new EntityNotFoundException("Kullanıcı bulunamadı!")));
     }
 
-    //@PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
+    //    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @GetMapping("/all")
     public ResponseEntity getAllUser() {
         List<User> users = userService.getAllUsers();
@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    //@PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
+    //    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @PostMapping
     public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
         return ResponseEntity.ok(userService.createUser(createUserRequest));
