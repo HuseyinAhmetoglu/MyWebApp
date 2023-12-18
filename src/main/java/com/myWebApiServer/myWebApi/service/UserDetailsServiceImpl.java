@@ -1,5 +1,6 @@
 package com.myWebApiServer.myWebApi.service;
 
+import com.myWebApiServer.myWebApi.exception.ResourceNotFoundException;
 import com.myWebApiServer.myWebApi.model.User;
 import com.myWebApiServer.myWebApi.security.CustomUserDetail;
 import org.slf4j.Logger;
@@ -23,11 +24,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         logger.debug("Entering in loadUserByUsername Method...");
-        User user = userService.getByUsername(username).orElse(null);
-        if (user == null) {
+        User user = userService.getByUsername(username).orElseThrow(() -> {
             logger.error("Username not found: " + username);
-            throw new UsernameNotFoundException("could not found user..!!");
-        }
+            return new ResourceNotFoundException("could not found user..!!");
+        });
         logger.info("User Authenticated Successfully..!!!");
         return new CustomUserDetail(user);
     }
