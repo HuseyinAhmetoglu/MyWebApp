@@ -1,8 +1,8 @@
 package com.myWebApiServer.myWebApi.service;
 
-import com.myWebApiServer.myWebApi.dto.CreateUserRequest;
-import com.myWebApiServer.myWebApi.dto.UserResponse;
-import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.payload.request.CreateUserRequest;
+import com.myWebApiServer.myWebApi.payload.UserVO;
+import com.myWebApiServer.myWebApi.entity.User;
 import com.myWebApiServer.myWebApi.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,14 +32,13 @@ public class UserService {
         return userRepository.findById(userId);
     }
 
-    public UserResponse createUser(CreateUserRequest createUserRequest) {
+    public UserVO createUser(CreateUserRequest createUserRequest) {
         User createdUser = new User();
         createdUser.setName(createUserRequest.getName());
         createdUser.setSurname(createUserRequest.getSurname());
         createdUser.setUsername(createUserRequest.getUsername());
         createdUser.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
-        createdUser.setAuthorities(createUserRequest.getAuthorities());
         userRepository.save(createdUser);
-        return new UserResponse(createdUser);
+        return new UserVO(createdUser);
     }
 }

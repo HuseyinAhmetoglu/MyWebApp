@@ -1,19 +1,16 @@
-package com.myWebApiServer.myWebApi.dto;
+package com.myWebApiServer.myWebApi.payload.request;
 
-import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.entity.Role;
 
-public class UserResponse {
+import java.util.Set;
+
+public class CreateUserRequest {
     private String name;
     private String surname;
     private String username;
+    private String password;
 
-    public UserResponse() {
-    }
-
-    public UserResponse(User user) {
-        this.name = user.getName();
-        this.surname = user.getSurname();
-        this.username = user.getUsername();
+    public CreateUserRequest() {
     }
 
     public String getName() {
@@ -39,4 +36,13 @@ public class UserResponse {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

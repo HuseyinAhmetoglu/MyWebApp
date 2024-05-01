@@ -1,7 +1,7 @@
 package com.myWebApiServer.myWebApi.controller;
 
-import com.myWebApiServer.myWebApi.dto.CreateUserRequest;
-import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.payload.request.CreateUserRequest;
+import com.myWebApiServer.myWebApi.entity.User;
 import com.myWebApiServer.myWebApi.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
 
@@ -36,8 +36,9 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @CrossOrigin
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
+    //@PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
         return ResponseEntity.ok(userService.createUser(createUserRequest));
     }

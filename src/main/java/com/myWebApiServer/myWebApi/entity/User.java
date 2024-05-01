@@ -1,4 +1,4 @@
-package com.myWebApiServer.myWebApi.model;
+package com.myWebApiServer.myWebApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,18 +10,16 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
     private Long id;
     private String name;
     private String surname;
     private String username;
-    @JsonIgnore
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "authority",
-            joinColumns = {@JoinColumn(name = "userId", referencedColumnName = "userId")},
-            inverseJoinColumns = {@JoinColumn(name = "roleId", referencedColumnName = "roleId")})
+            joinColumns = {@JoinColumn(name = "userId", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "roleId", referencedColumnName = "id")})
     Set<Role> authorities;
 
     public User() {

@@ -1,4 +1,4 @@
-package com.myWebApiServer.myWebApi.model;
+package com.myWebApiServer.myWebApi.entity;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "roleId")
     private Long id;
 
     private String name;

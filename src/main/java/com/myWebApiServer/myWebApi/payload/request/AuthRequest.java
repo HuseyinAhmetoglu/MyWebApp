@@ -1,4 +1,4 @@
-package com.myWebApiServer.myWebApi.dto;
+package com.myWebApiServer.myWebApi.payload.request;
 
 public class AuthRequest {
 

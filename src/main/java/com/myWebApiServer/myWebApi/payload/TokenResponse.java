@@ -1,12 +1,12 @@
-package com.myWebApiServer.myWebApi.dto;
+package com.myWebApiServer.myWebApi.payload;
 
-public class JwtResponse {
+public class TokenResponse {
     private String accessToken;
 
-    public JwtResponse() {
+    public TokenResponse() {
     }
 
-    public JwtResponse(String accessToken) {
+    public TokenResponse(String accessToken) {
         this.accessToken = accessToken;
     }
 

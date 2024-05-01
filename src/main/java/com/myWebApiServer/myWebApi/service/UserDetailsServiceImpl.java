@@ -1,7 +1,7 @@
 package com.myWebApiServer.myWebApi.service;
 
 import com.myWebApiServer.myWebApi.exception.ResourceNotFoundException;
-import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.entity.User;
 import com.myWebApiServer.myWebApi.security.CustomUserDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

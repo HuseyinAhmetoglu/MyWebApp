@@ -1,6 +1,6 @@
 package com.myWebApiServer.myWebApi.repository;
 
-import com.myWebApiServer.myWebApi.model.User;
+import com.myWebApiServer.myWebApi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
